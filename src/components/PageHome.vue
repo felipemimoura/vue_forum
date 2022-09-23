@@ -10,27 +10,14 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import sourceData from '@/data.json';
 
-export default {
-  data() {
-    return {
-      threads: sourceData.threads,
-      posts: sourceData.posts,
-      users: sourceData.users,
-    };
-  },
-  methods: {
-    postById(postId) {
-      return this.posts.find((post) => post.id === postId);
-    },
+const { threads, posts, users } = sourceData;
 
-    userById(userId) {
-      return this.users.find((post) => post.id === userId);
-    },
-  },
-};
+const postById = (postId) => posts.find((post) => post.id === postId);
+
+const userById = (userId) => users.find((post) => post.id === userId);
 </script>
 
 <style>

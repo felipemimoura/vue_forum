@@ -3,15 +3,14 @@
   <page-home />
 </template>
 
-<script>
+<script setup>
 import PageHome from '@/components/PageHome.vue';
+// const
+// name: 'App',
+// components: {
+//   PageHome,
+// }
 
-export default {
-  name: 'App',
-  components: {
-    PageHome,
-  },
-};
 </script>
 
 <style>
