@@ -4,7 +4,7 @@
 
 <script setup>
 import sourceData from '@/data.json'
-import ThreadList from './ThreadList.vue'
+import ThreadList from '@/components/ThreadList.vue'
 
 const { threads } = sourceData
 
