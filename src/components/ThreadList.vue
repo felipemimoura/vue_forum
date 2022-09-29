@@ -34,7 +34,6 @@
 </template>
 <script setup>
 import sourceData from '@/data.json'
-import { defineProps } from 'vue'
 
 const props = defineProps(['threads'])
 
