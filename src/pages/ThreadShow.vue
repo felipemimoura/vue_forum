@@ -7,7 +7,7 @@
         <div class="form-group">
           <label for="newPostText"></label>
           <textarea
-            v-model="newPostText"
+            v-model="state.newPostText"
             name="newPostText"
             id=""
             cols="30"
@@ -24,32 +24,35 @@
 </template>
 
 <script setup>
-import PostList from '@/components/PostList.vue'
 import sourceData from '@/data.json'
-import { computed, ref } from 'vue'
+import PostList from '@/components/PostList.vue'
+import { computed, reactive } from 'vue'
 
-const props = defineProps(['id'])
+const props = defineProps({
+  id: String,
+})
+const state = reactive({
+  newPostText: '',
+  threads: sourceData.threads,
+  posts: sourceData.posts,
+})
 
-const { threads, posts } = sourceData
+const thread = computed(() => state.threads.find((t) => t.id === props.id))
 
-const newPostText = ref('')
-
-const thread = computed(() => threads.find((t) => t.id === props.id))
-const threadPosts = computed(() => sourceData.posts.filter((p) => p.threadId === props.id))
+const threadPosts = computed(() => state.posts.filter((post) => post.threadId === props.id))
 
 const addPost = () => {
   const postId = `ggqq${Math.random()}`
-  const newPost = {
+  const post = {
     id: postId,
-    text: newPostText.value,
+    text: state.newPostText,
     publishedAt: Math.floor(Date.now() / 1000),
     threadId: props.id,
     userId: 'rpbB8C6ifrYmNDufMERWfQUoa202',
   }
-
-  posts.push(newPost)
+  state.posts.push(post)
   thread.value.posts.push(postId)
-  newPostText.value = ''
+  state.newPostText = ''
 }
 </script>
 
