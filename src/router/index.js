@@ -1,6 +1,7 @@
 import HomePage from '@/pages/Home.vue';
 import ThreadShow from '@/pages/ThreadShow.vue';
 import NotFound from '@/pages/NotFound.vue'
+import Forum from '@/pages/Forum.vue'
 import { createRouter, createWebHistory } from 'vue-router';
 import sourceData from '@/data.json'
 
@@ -25,6 +26,13 @@ const routes = [
       })
     },
 
+
+  },
+  {
+    path: '/forum/:id',
+    name: 'Forum',
+    component: Forum,
+    props: true
   },
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
 ];
