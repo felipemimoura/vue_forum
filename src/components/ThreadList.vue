@@ -11,7 +11,7 @@
           </p>
           <p class="text-faded text-xsmall">
             <a href="#">{{ userById(thread.userId).name }}</a
-            >, {{ thread.publishedAt }}
+            >, <AppDate :timestamp="thread.publishedAt" />
           </p>
         </div>
 
@@ -24,7 +24,7 @@
               <a href="#">{{ userById(thread.userId).name }}</a>
             </p>
             <p class="text-small text-faded">
-              {{ thread.publishedAt }}
+              <AppDate :timestamp="thread.publishedAt" />
             </p>
           </div>
         </div>
@@ -34,8 +34,9 @@
 </template>
 <script setup>
 import sourceData from '@/data.json'
+import AppDate from './AppDate.vue'
 
-const props = defineProps(['threads'])
+const props = defineProps({ threads: { required: true } })
 
 const { users } = sourceData
 

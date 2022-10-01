@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div>
     <div class="post-list">
       <div class="post" v-for="post in props.posts" :key="post.id">
@@ -21,7 +21,7 @@
         </div>
 
         <div class="post-date text-faded">
-          {{ post.publishedAt }}
+          <AppDate :timestamp="post.publishedAt" />
         </div>
       </div>
     </div>
@@ -29,10 +29,17 @@
 </template>
 <script setup>
 import sourceData from '@/data.json'
+import AppDate from '@/components/AppDate.vue'
 
 const props = defineProps(['posts'])
 const { users } = sourceData
 
+const diffForHumans = (timestamp) => {
+  return dayjs.unix(timestamp).fromNow()
+}
+const humanFriendlyDate = (timestamp) => {
+  return dayjs.unix(timestamp).format('llll')
+}
 // const postById = (postId) => posts.find((post) => post.id === postId)
 
 const userById = (userId) => users.find((post) => post.id === userId)
