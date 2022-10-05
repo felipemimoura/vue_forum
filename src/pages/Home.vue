@@ -1,12 +1,12 @@
 <template>
-  <ForumList :forums="forums" />
+  <CategoryList :categories="categories" />
 </template>
 
 <script setup>
 import sourceData from '@/data.json'
-import ForumList from '@/components/ForumList.vue'
+import CategoryList from '@/components/CategoryList.vue'
 
-const forums = sourceData.forums
+const categories = sourceData.categories
 </script>
 
 <style></style>
