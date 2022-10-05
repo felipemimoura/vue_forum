@@ -2,7 +2,10 @@
   <div class="col-full">
     <div class="forum-list">
       <h2 class="list-title">
-        <a href="#">Forums</a>
+        <router-link v-if="categoryId" :to="{ name: 'Category', params: { id: categoryId } }">
+          {{ title }}
+        </router-link>
+        <span v-else> Forums</span>
       </h2>
 
       <div class="forum-listing" v-for="forum in props.forums" :key="forum.id">
@@ -25,7 +28,17 @@
   </div>
 </template>
 <script setup>
-const props = defineProps({ forums: { required: true, type: Array } })
+const props = defineProps({
+  forums: { required: true, type: Array },
+  title: {
+    type: String,
+    default: 'Forums',
+  },
+  categoryId: {
+    required: true,
+    type: String,
+  },
+})
 
 const forumThreadsWord = (forum) => {
   if (forum.threads?.length) {
