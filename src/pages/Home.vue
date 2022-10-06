@@ -3,10 +3,13 @@
 </template>
 
 <script setup>
-import sourceData from '@/data.json'
+import { computed } from 'vue'
 import CategoryList from '@/components/CategoryList.vue'
+import { useStore } from 'vuex'
 
-const categories = sourceData.categories
+const store = useStore()
+
+const categories = computed(() => store.state.categories)
 </script>
 
 <style></style>
