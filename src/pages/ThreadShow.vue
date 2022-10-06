@@ -7,9 +7,9 @@
 </template>
 
 <script setup>
-import PostList from '@/components/PostList.vue'
 import PostEditor from '@/components/PostEditor.vue'
-import { computed, reactive } from 'vue'
+import PostList from '@/components/PostList.vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 
 const props = defineProps({
@@ -32,7 +32,6 @@ const addPost = (eventData) => {
     threadId: props.id,
   }
 
-  console.log(post.id)
   posts.value.push(post)
   thread.value.posts.push(post.id)
 }

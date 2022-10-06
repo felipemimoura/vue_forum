@@ -28,7 +28,6 @@ const props = defineProps({
 // const state = reactive({
 //   threads: sourceData.threads,
 // })
-console.log(store.state.forums)
 // const threads = computed(() =)
 
 const forums = computed(() => store.state.forums)
