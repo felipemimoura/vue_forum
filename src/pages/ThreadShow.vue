@@ -16,11 +16,11 @@ const props = defineProps({
   id: String,
 })
 
-const store = useStore()
+const { state, dispatch } = useStore()
 
-const threads = computed(() => store.state.threads)
+const threads = computed(() => state.threads)
 
-const posts = computed(() => store.state.posts)
+const posts = computed(() => state.posts)
 
 const thread = computed(() => threads.value.find((t) => t.id === props.id))
 
@@ -32,8 +32,7 @@ const addPost = (eventData) => {
     threadId: props.id,
   }
 
-  posts.value.push(post)
-  thread.value.posts.push(post.id)
+  dispatch('createPost', post)
 }
 </script>
 
