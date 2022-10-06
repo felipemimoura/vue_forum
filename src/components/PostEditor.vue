@@ -25,7 +25,8 @@ const state = reactive({
   text: '',
 })
 
-const emit = defineEmits('save-post')
+const emit = defineEmits(['save-post'])
+
 const save = () => {
   const postId = `ggqq${Math.random()}`
   const post = {
