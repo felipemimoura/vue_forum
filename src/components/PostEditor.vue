@@ -25,11 +25,10 @@ const state = reactive({
   text: '',
 })
 
-const emit = defineEmits('save-post')
+const emit = defineEmits(['save-post'])
+
 const save = () => {
-  const postId = `ggqq${Math.random()}`
   const post = {
-    id: postId,
     text: state.text,
     publishedAt: Math.floor(Date.now() / 1000),
     userId: 'rpbB8C6ifrYmNDufMERWfQUoa202',

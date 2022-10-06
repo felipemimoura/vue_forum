@@ -3,14 +3,13 @@
     v-for="category in props.categories"
     :key="category.id"
     :forums="getForumByCategory(category)"
-    :title="category.name"
     :categoryId="category.id"
+    :title="category.name"
   />
 </template>
 <script setup>
+import { useStore } from 'vuex'
 import ForumList from './ForumList.vue'
-import sourceData from '@/data.json'
-import { reactive } from 'vue'
 const props = defineProps({
   categories: {
     required: true,
@@ -18,9 +17,7 @@ const props = defineProps({
   },
 })
 
-const state = reactive({
-  forums: sourceData.forums,
-})
+const { state } = useStore()
 
 const getForumByCategory = (category) => {
   return state.forums.filter((forum) => forum.categoryId === category.id)

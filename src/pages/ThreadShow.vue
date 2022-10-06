@@ -7,32 +7,32 @@
 </template>
 
 <script setup>
-import sourceData from '@/data.json'
-import PostList from '@/components/PostList.vue'
 import PostEditor from '@/components/PostEditor.vue'
-import { computed, reactive } from 'vue'
+import PostList from '@/components/PostList.vue'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 
 const props = defineProps({
   id: String,
 })
-const state = reactive({
-  threads: sourceData.threads,
-  posts: sourceData.posts,
-})
 
-const thread = computed(() => state.threads.find((t) => t.id === props.id))
+const { state, dispatch } = useStore()
 
-const threadPosts = computed(() => state.posts.filter((post) => post.threadId === props.id))
+const threads = computed(() => state.threads)
+
+const posts = computed(() => state.posts)
+
+const thread = computed(() => threads.value.find((t) => t.id === props.id))
+
+const threadPosts = computed(() => posts.value.filter((post) => post.threadId === props.id))
 
 const addPost = (eventData) => {
   const post = {
     ...eventData.post,
     threadId: props.id,
   }
-  console.log('eventData', post)
-  state.posts.push(post)
-  thread.value.posts.push(postId)
-  state.newPostText = ''
+
+  dispatch('createPost', post)
 }
 </script>
 

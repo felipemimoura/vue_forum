@@ -14,22 +14,27 @@
   </div>
 </template>
 <script setup>
-import { computed, reactive } from 'vue'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
 import ThreadList from '@/components/ThreadList.vue'
-import sourceData from '@/data.json'
+
+const store = useStore()
 
 const props = defineProps({
   id: String,
 })
 
-const state = reactive({
-  forums: sourceData.forums,
-  threads: sourceData.threads,
-})
+// const state = reactive({
+//   threads: sourceData.threads,
+// })
+// const threads = computed(() =)
 
-const forum = computed(() => state.forums.find((forum) => forum.id === props.id))
+const forums = computed(() => store.state.forums)
+const threads = computed(() => store.state.threads)
 
-const threadList = computed(() => state.threads.filter((thread) => thread.forumId === props.id))
-console.log(threadList.value)
+const forum = computed(() => forums.value.find((forum) => forum.id === props.id))
+
+const threadList = computed(() => threads.value.filter((thread) => thread.forumId === props.id))
 </script>
 <style lang=""></style>

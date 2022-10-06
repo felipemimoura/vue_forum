@@ -30,9 +30,11 @@
 <script setup>
 import sourceData from '@/data.json'
 import AppDate from '@/components/AppDate.vue'
+import { useStore } from 'vuex'
 
 const props = defineProps(['posts'])
-const { users } = sourceData
+const { state } = useStore()
+const { users } = state
 
 const diffForHumans = (timestamp) => {
   return dayjs.unix(timestamp).fromNow()

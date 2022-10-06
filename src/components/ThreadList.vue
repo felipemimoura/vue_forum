@@ -33,14 +33,13 @@
   </div>
 </template>
 <script setup>
-import sourceData from '@/data.json'
 import AppDate from './AppDate.vue'
+import { useStore } from 'vuex'
 
 const props = defineProps({ threads: { required: true } })
 
-const { users } = sourceData
-
-// const postById = (postId) => posts.find((post) => post.id === postId)
+const { state } = useStore()
+const { users } = state
 
 const userById = (userId) => users.find((post) => post.id === userId)
 </script>

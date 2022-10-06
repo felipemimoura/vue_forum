@@ -5,19 +5,20 @@
 
 <script setup>
 import ForumList from '@/components/ForumList'
-import sourceData from '@/data.json'
-import { computed, reactive } from 'vue'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
 
 const props = defineProps({
   id: String,
 })
-const state = reactive({
-  categories: sourceData.categories,
-})
 
-const category = computed(() => state.categories.find((category) => category.id === props.id))
+const categories = computed(() => store.state.categories)
+
+const category = computed(() => categories.value.find((category) => category.id === props.id))
 const getForumsForCategory = (category) => {
-  return sourceData.forums.filter((forum) => forum.categoryId === category.id)
+  return store.state.forums.filter((forum) => forum.categoryId === category.id)
 }
 </script>
 
